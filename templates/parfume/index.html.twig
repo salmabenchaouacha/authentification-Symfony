@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Parfume index{% endblock %}
+
+{% block body %}
+    <h1>home page</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for parfume in parfumes %}
+            <tr>
+                <td>{{ parfume.id }}</td>
+                <td>{{ parfume.name }}</td>
+                <td>{{ parfume.price }}</td>
+                <td>
+                    <a href="{{ path('app_parfume_show', {'id': parfume.id}) }}">show</a>
+                    <a href="{{ path('app_parfume_edit', {'id': parfume.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_parfume_new') }}">Create new</a>
+{% endblock %}

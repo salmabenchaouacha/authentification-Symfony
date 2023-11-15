@@ -1,0 +1,30 @@
+version: '3'
+services:
+  database:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+
+    volumes:
+      - db_data:/var/lib/mysql
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      DATABASE_URL: mysql://root:example@database/db_name
+    ports:
+      - 80:80
+    depends_on:
+      - database
+    volumes:
+      - .:/var/www/html
+volumes:
+  db_data:

@@ -1,0 +1,16 @@
+sonata_admin:
+    title: 'Sonata Admin'
+    dashboard:
+        blocks:
+            - { type: sonata.admin.block.admin_list, position: left }
+        # groups:
+        #      User:
+        #         on_top: true
+        #         label: Liste des Utilisateur
+        #         icon: '<i class="fas fa-users"></i>'
+        #         translation_domain: ~
+        #          - admin.user
+sonata_block:
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts: [admin]
